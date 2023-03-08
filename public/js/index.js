@@ -5,6 +5,8 @@ import axios from 'axios';
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { signup } from './signup';
+import { forgotPassword } from './forgotPassword';
+import { resetPassword } from './resetPassword';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
@@ -12,11 +14,15 @@ import { showAlert } from './alerts';
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
-const signupForm = document.querySelector('.form--signup');
+
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+
+const signupForm = document.querySelector('.form--signup');
+const forgotPasswordForm = document.querySelector('.form--forgotPassword');
+const resetPasswordForm = document.querySelector('.form--resetPassword');
 
 const alertMessage = document.querySelector('body').dataset.alert;
 
@@ -40,6 +46,27 @@ if (signupForm)
     signup(name, email, password, passwordConfirm);
   });
 
+if (forgotPasswordForm)
+  forgotPasswordForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+
+    forgotPassword(email);
+  });
+
+if (resetPasswordForm)
+  resetPasswordForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const { resetToken } = document.getElementById('change-password').dataset;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('confirm-password').value;
+
+    console.log(resetToken, password, passwordConfirm);
+    resetPassword(password, passwordConfirm, resetToken);
+  });
+
 if (loginForm)
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -57,17 +84,17 @@ if (logOutBtn)
         url: '/api/v1/users/logout',
       });
       if ((res.data.status = 'success')) {
-        showAlert('success', 'Logging Out....!');
+        showAlert('success', 'Logging Out...!');
         window.setTimeout(() => {
           location.assign('/');
-        }, 1000);
+        }, 2000);
         window.setTimeout(() => {
           location.reload(true);
-        }, 2000);
+        }, 4000);
       }
     } catch (err) {
       // console.log(err.response);
-      showAlert('error', 'Error logging out! Try again.');
+      showAlert('error', 'Error while Logging Out! Try again.');
     }
   });
 

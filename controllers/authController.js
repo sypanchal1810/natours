@@ -21,9 +21,6 @@ const createAndSendToken = (user, statusCode, req, res) => {
     secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
   });
 
-  // Remove password from output
-  user.password = undefined;
-
   res.status(statusCode).json({
     status: 'success',
     token,
@@ -166,23 +163,10 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // 3) Send it to user's email
-  // const resetURL = `${req.protocol}://${req.get(
-  //   'host'
-  // )}/api/v1/users/resetPassword/${resetToken}`;
-
-  // const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
-
   try {
-    // await sendEmail({
-    //   email: user.email,
-    //   subject: 'Your password reset token (valid for 10 min)',
-    //   message,
-    // });
-    const resetURL = `${req.protocol}://${req.get(
-      'host'
-    )}/api/v1/users/resetPassword/${resetToken}`;
+    const resetURL = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
 
-    await new Email(user, resetURL).sendWelcome();
+    await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({
       status: 'success',
@@ -218,10 +202,15 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
   // 3) Update changedPasswordAt property of the user object
   user.passwordChangedAt = Date.now() - 1000;
-  await user.save({ email: { validateBeforeSave: false } });
+  await user.save({ validateBeforeSave: false });
 
-  // 4) Log the user in and send JWT
-  createAndSendToken(user, 200, req, res);
+  res.status(200).json({
+    status: 'success',
+    message: 'Password changed successfully. Please Log into your account...',
+  });
+
+  // // 4) Log the user in and send JWT
+  // createAndSendToken(user, 200, req, res);
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {

@@ -13,7 +13,7 @@
     "debug": "ndb server.js",
     "watch": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundled",
     "build:js": "esbuild ./public/js/index.js --bundle --minify --outdir=./public/js/bundled",
-    "format": "prettier --write **/**.js **/**.pug"
+    "format": "prettier --write **/**.**"
   },
   "author": "saurabh",
   "license": "ISC",

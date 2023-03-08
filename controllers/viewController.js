@@ -60,6 +60,21 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getForgotPasswordForm = catchAsync(async (req, res, next) => {
+  res.status(200).render('forgotPasswordForm', {
+    title: 'Forgot Password',
+  });
+});
+
+exports.getResetPasswordForm = catchAsync(async (req, res, next) => {
+  const resetToken = req.params.resetToken;
+
+  res.status(200).render('resetPasswordForm', {
+    title: 'Reset Password',
+    resetToken,
+  });
+});
+
 exports.alerts = catchAsync(async (req, res, next) => {
   const { alert } = req.query;
 

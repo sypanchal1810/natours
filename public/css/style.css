@@ -114,13 +114,7 @@ body {
   font-size: 2.25rem;
   text-transform: uppercase;
   font-weight: 700;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#7dd56f),
-    to(#28b487)
-  );
+  background-image: -webkit-gradient(linear, left top, right top, from(#7dd56f), to(#28b487));
   background-image: linear-gradient(to right, #7dd56f, #28b487);
   -webkit-background-clip: text;
   color: transparent;
@@ -128,13 +122,7 @@ body {
   line-height: 1.3;
 }
 .heading-secondary--error {
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#ff7730),
-    to(#eb4d4b)
-  );
+  background-image: -webkit-gradient(linear, left top, right top, from(#ff7730), to(#eb4d4b));
   background-image: linear-gradient(to right, #ff7730, #eb4d4b);
   font-size: 3.5rem;
 }
@@ -336,18 +324,8 @@ body {
 .section-header {
   position: relative;
   height: 38vw;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--section-rotate)),
-    0 100%
-  );
-  -webkit-clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--section-rotate)),
-    0 100%
-  );
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--section-rotate)), 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--section-rotate)), 0 100%);
 }
 
 .header__hero {
@@ -367,13 +345,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));
   background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
   opacity: 0.85;
 }
@@ -576,13 +548,7 @@ body {
   padding: calc(5rem + var(--section-rotate)) 0;
   position: relative;
   z-index: 1000;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
+  background: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));
   background: linear-gradient(to right bottom, #7dd56f, #28b487);
   clip-path: polygon(
     0 var(--section-rotate),
@@ -717,13 +683,7 @@ body {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
+  background: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));
   background: linear-gradient(to right bottom, #7dd56f, #28b487);
   z-index: 10;
   -webkit-transform: translate(-35%, -50%);
@@ -774,13 +734,7 @@ body {
   -webkit-box-flex: 32rem;
   -ms-flex: 32rem 0 0px;
   flex: 32rem 0 0;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));
   background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
   padding: 4rem 0;
 }
@@ -1111,13 +1065,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#7dd56f), to(#28b487));
   background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
   opacity: 0.7;
 }
@@ -1225,7 +1173,9 @@ body {
   margin: 0 auto;
 }
 
-.login-form, .signup-form {
+.login-form,
+.signup-form,
+.forgot_reset-form {
   margin: 0 auto;
   max-width: 55rem;
   background-color: #fff;
@@ -1325,4 +1275,44 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+
+/* Extras */
+
+.external-links,
+.external-links a,
+.external-links a:visited {
+  display: block;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.7rem;
+  font-weight: 700;
+  float: right;
+  text-decoration: underline;
+  color: blue;
+  margin-top: 0.7rem;
+}
+
+.btn--google {
+  display: block;
+  font-family: inherit;
+  color: inherit;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  text-decoration: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  left: 12%;
+}
+
+.icon__google-img {
+  height: 2.8rem;
+  width: 2.8rem;
+  margin-right: 1rem;
 }

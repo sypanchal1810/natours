@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'default.jpg',
+    default: `${process.env.DEFAULT_USER_PROFILE_IMAGE_URL}`,
     //   required: [true, 'A user must have a profile photo'],
   },
   role: {
@@ -111,6 +111,7 @@ userSchema.pre('save', function () {
 
 // Comparing the password given in login and original password
 userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+  console.log(candidatePassword, userPassword);
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 

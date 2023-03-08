@@ -2,24 +2,21 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const signup = async (name, email, password, passwordConfirm) => {
+export const forgotPassword = async email => {
   try {
     const res = await axios({
       method: 'POST',
-      url: '/api/v1/users/signup',
+      url: '/api/v1/users/forgotPassword',
       data: {
-        name,
         email,
-        password,
-        passwordConfirm,
       },
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'User account created successfully!');
-      window.setTimeout(() => {
-        location.assign('/');
-      }, 3000);
+      showAlert(
+        'success',
+        'Reset Password email sent successfully. \nCheck your email and reset your password with given link.'
+      );
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
